@@ -1,0 +1,35 @@
+shell = "zsh"
+apply = ["defer"]
+
+
+[templates]
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+apply = ["source"]
+
+[plugins.local-configs]
+local = "~/.config/zsh/config.d/"
+use = ["*.zsh"]
+apply = ["source"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+use = ["{{ name }}.zsh"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.compinit]
+inline = "zsh-defer `autoload -Uz compinit && compinit`"
+
+[plugins.starship]
+inline = "eval \"$(starship init zsh)\""
+
+[plugins.mise]
+inline = "eval \"$(mise activate zsh)\""

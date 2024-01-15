@@ -1,0 +1,3 @@
+setopt AUTO_CD
+setopt AUTOPUSHD
+setopt PUSHD_IGNORE_DUPS
