@@ -30,6 +30,3 @@ inline = "autoload -Uz compinit && zsh-defer compinit"
 
 [plugins.starship]
 inline = "eval \"$(starship init zsh)\""
-
-[plugins.mise]
-inline = "eval \"$(mise activate zsh)\""

@@ -1,18 +1,12 @@
-CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
-CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
+zmodload zsh/zprof
 
+source ${ZDOTDIR}/scripts/optimize-builtin-source.zsh
+source ${ZDOTDIR}/scripts/set-base-directory.zsh
 
-# Cache the result of `sheldon source` when sheldon config is updated.
-SHELDON_SOURCE_CACHE="$CACHE_HOME/sheldon/source.zsh"
-SHELDON_CONFIG="$CONFIG_HOME/sheldon/plugins.toml"
+source ${ZDOTDIR}/scripts/init-homebrew.zsh
+source ${ZDOTDIR}/scripts/run-sheldon-source-with-cache.zsh
 
-if [[ ! -r "$SHELDON_SOURCE_CACHE" || "$SHELDON_CONFIG" -nt "$SHELDON_SOURCE_CACHE" ]]; then
-  mkdir -p $(dirname $SHELDON_SOURCE_CACHE)
-  sheldon --quiet source > $SHELDON_SOURCE_CACHE
-fi
-source "$SHELDON_SOURCE_CACHE"
+zsh-defer source ${ZDOTDIR}/scripts/init-mise.zsh
 
-unset SHELDON_SOURCE_CACHE SHELDON_CONFIG
-
-
-unset CONFIG_HOME CACHE_HOME
+zsh-defer source ${ZDOTDIR}/scripts/unset-base-directory.zsh
+zsh-defer source ${ZDOTDIR}/scripts/reset-optimized-source.zsh
