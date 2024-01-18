@@ -4,17 +4,27 @@
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
-ZDOTDIR=${CONFIG_HOME}/zsh
 
-mkdir -p ${ZDOTDIR}
+symlink_configs() {
+  local conf_dirname=$1
+  local symlink_src=${SCRIPT_DIR}/{$conf_dirname}
+  local symlink_dest=${CONFIG_HOME}/{$conf_dirname}
+
+  mkdir -p ${symlink_dest}
+
+  for conf_path in `find maxdepth 1 ${symlink_src} -type f`; do
+    ln -s ${conf_path} ${symlink_dest}/$(basename ${conf_path})
+  done
+}
+
+
 ln -s ${SCRIPT_DIR}/.zshenv ~/.zshenv
-ln -s ${SCRIPT_DIR}/zsh/.zshenv ${ZDOTDIR}/.zshenv
-ln -s ${SCRIPT_DIR}/zsh/.zprofile ${ZDOTDIR}/.zprofile
-ln -s ${SCRIPT_DIR}/zsh/.zshrc ${ZDOTDIR}/.zshrc
-ln -s $(readlink -f zsh/config.d) ${ZDOTDIR}/config.d
+symlink_configs zsh
+symlink_configs zsh/config.d
+
 
 brew install sheldon
-ln -s ${SCRIPT_DIR}/sheldon/plugins.toml ${CONFIG_HOME}/sheldon/plugins.toml
+symlink_configs sheldon
 
 brew install \
   starship mise gh \
