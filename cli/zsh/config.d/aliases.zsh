@@ -2,7 +2,7 @@
 alias vi='nvim'
 alias vim='nvim'
 alias cat='bat --paging=never'
-alias ls='exa --icons --header --git --ignore-glob=.git'
+alias ls='eza --icons --header --git --ignore-glob=.git'
 
 
 # Shorthands

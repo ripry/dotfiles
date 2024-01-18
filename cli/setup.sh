@@ -19,6 +19,6 @@ ln -s ${SCRIPT_DIR}/sheldon/plugins.toml ${CONFIG_HOME}/sheldon/plugins.toml
 brew install \
   starship mise gh \
   fzf jq neovim \
-  bat bottom dust exa fd ripgrep
+  bat bottom dust eza fd ripgrep
 
 source ~/.zshenv ${ZDOTDIR}/.zshrc
