@@ -26,7 +26,7 @@ use = ["{{ name }}.zsh"]
 github = "zsh-users/zsh-completions"
 
 [plugins.compinit]
-inline = "zsh-defer `autoload -Uz compinit && compinit`"
+inline = "autoload -Uz compinit && zsh-defer compinit"
 
 [plugins.starship]
 inline = "eval \"$(starship init zsh)\""
