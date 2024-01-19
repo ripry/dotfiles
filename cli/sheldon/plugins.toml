@@ -17,13 +17,20 @@ apply = ["source"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
+apply = ["source"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
+apply = ["source"]
+
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
+apply = ["source"]
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
+apply = ["source"]
 
 [plugins.compinit]
 inline = "autoload -Uz compinit && zsh-defer compinit"
