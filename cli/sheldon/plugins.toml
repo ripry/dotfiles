@@ -28,8 +28,5 @@ github = "marlonrichert/zsh-autocomplete"
 github = "olets/zsh-abbr"
 apply = ["defer"]
 
-[plugins.compinit]
-inline = "autoload -Uz compinit && zsh-defer compinit"
-
 [plugins.starship]
 inline = "eval \"$(starship init zsh)\""
