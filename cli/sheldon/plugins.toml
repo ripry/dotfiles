@@ -22,9 +22,6 @@ use = ["{{ name }}.zsh"]
 [plugins.zsh-autocomplete]
 github = "marlonrichert/zsh-autocomplete"
 
-[plugins.zsh-completions]
-github = "zsh-users/zsh-completions"
-
 [plugins.zsh-abbr]
 github = "olets/zsh-abbr"
 apply = ["defer"]
