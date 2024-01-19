@@ -29,5 +29,9 @@ apply = ["defer"]
 github = "olets/zsh-abbr"
 apply = ["defer"]
 
+[plugins.enhancd]
+github = "b4b4r07/enhancd"
+apply = ["defer"]
+
 [plugins.starship]
 inline = "eval \"$(starship init zsh)\""
