@@ -32,6 +32,9 @@ apply = ["source"]
 github = "zsh-users/zsh-completions"
 apply = ["source"]
 
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+
 [plugins.compinit]
 inline = "autoload -Uz compinit && zsh-defer compinit"
 
