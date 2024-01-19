@@ -11,19 +11,19 @@ github = "romkatv/zsh-defer"
 
 [plugins.local-configs]
 local = "~/.config/zsh/config.d/"
-use = ["*.zsh"]
 
 [plugins.fast-syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
+apply = ["defer"]
+
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
 apply = ["defer"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
-
-[plugins.zsh-autocomplete]
-github = "marlonrichert/zsh-autocomplete"
 
 [plugins.zsh-abbr]
 github = "olets/zsh-abbr"
