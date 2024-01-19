@@ -1,4 +1,4 @@
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 source ${ZDOTDIR}/scripts/set-base-directory.zsh
 
@@ -12,3 +12,7 @@ zsh-defer source ${ZDOTDIR}/scripts/init-mise.zsh
 zsh-defer source ${ZDOTDIR}/scripts/run-compinit-faster.zsh
 
 zsh-defer source ${ZDOTDIR}/scripts/unset-base-directory.zsh
+
+if type zprof &>/dev/null ;then
+  zprof
+fi
