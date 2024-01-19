@@ -2,7 +2,8 @@ shell = "zsh"
 
 
 [templates]
-defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+source = "{{ hooks?.pre | nl }}{% for file in files %}source_with_compile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source_with_compile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 
 
 [plugins.zsh-defer]
