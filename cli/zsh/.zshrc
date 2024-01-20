@@ -5,15 +5,17 @@
 # ---
 # Run `source` with zcompile
 source-with-zcompile() {
-  zcompile-if-not-compiled $1
-  builtin source $1
+  zcompile-if-not-compiled $@
+  builtin source $@
 }
 zcompile-if-not-compiled() {
-  local source=$1
-  local compiled=${source}.zwc
-  if [[ ! -r ${compiled} || ${source} -nt ${compiled} ]]; then
-    zcompile $1
-  fi
+  local source=
+  for source in "$@"; do
+    local compiled=${source}.zwc
+    if [[ ! -r ${compiled} || ${source} -nt ${compiled} ]]; then
+      zcompile $1
+    fi
+  done
 }
 
 # Run `eval "$(generate-script)"` with cache
@@ -48,11 +50,7 @@ eval-script-with-cache \
   "${CONFIG_HOME}/sheldon/plugins.toml"
 
 # Optimize next startup
-zsh-defer -c '
-  zcompile-if-not-compiled ${ZDOTDIR}/.zprofile
-  zcompile-if-not-compiled ${ZDOTDIR}/.zshenv
-  zcompile-if-not-compiled ${ZDOTDIR}/.zshrc
-'
+zsh-defer zcompile-if-not-compiled ${ZDOTDIR}/.zprofile ${ZDOTDIR}/.zshenv ${ZDOTDIR}/.zshrc
 
 
 # ---

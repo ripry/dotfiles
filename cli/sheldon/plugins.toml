@@ -1,20 +1,21 @@
 shell = "zsh"
-apply = ["defer"]
+apply = ["defer-with-zcompile"]
 
 
 [templates]
 source = """
 {{ hooks?.pre | nl }}\
-{% for file in files %}\
-  source-with-zcompile \"{{ file }}\"\n\
-{% endfor %}\
+source{% for file in files %} \\\n  {{ file }}{% endfor %}\n\
 {{ hooks?.post | nl }}\
 """
-defer = """
+source-with-zcompile = """
 {{ hooks?.pre | nl }}\
-{% for file in files %}\
-  zsh-defer source-with-zcompile \"{{ file }}\"\n\
-{% endfor %}\
+source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor %}\n\
+{{ hooks?.post | nl }}\
+"""
+defer-with-zcompile = """
+{{ hooks?.pre | nl }}\
+zsh-defer source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor %}\n\
 {{ hooks?.post | nl }}\
 """
 
@@ -32,7 +33,7 @@ apply = ["source"]
 # ---
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
-apply = ["source"]
+apply = ["source-with-zcompile"]
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
