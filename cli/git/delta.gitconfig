@@ -1,0 +1,27 @@
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[delta]
+    features = decorations
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+    hyperlinks = true
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[delta "decorations"]
+    file-style = omit
+    commit-decoration-style = gray ol
+    commit-style = raw
+    hunk-header-decoration-style = gray box
+    hunk-header-file-style = green
+    hunk-header-line-number-style = turquoise
+    hunk-header-style = file line-number syntax
+    line-numbers-left-style = gray
+    line-numbers-right-style = gray
+    hyperlinks-file-link-format = "vscode://file/{path}:{line}"

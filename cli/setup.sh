@@ -31,4 +31,9 @@ brew install \
   fzf jq neovim \
   bat bottom dust eza fd ripgrep
 
+if ! type git &>/dev/null; then
+  brew install git
+fi
+symlink_configs git
+
 source ~/.zshenv ${ZDOTDIR}/.zshrc
