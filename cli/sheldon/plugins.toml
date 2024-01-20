@@ -1,23 +1,15 @@
 shell = "zsh"
-apply = ["defer-with-zcompile"]
+apply = ["defer"]
 
 
 [templates]
-source = """
-{{ hooks?.pre | nl }}\
-source{% for file in files %} \\\n  {{ file }}{% endfor %}\n\
-{{ hooks?.post | nl }}\
-"""
-source-with-zcompile = """
-{{ hooks?.pre | nl }}\
-source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor %}\n\
-{{ hooks?.post | nl }}\
-"""
-defer-with-zcompile = """
-{{ hooks?.pre | nl }}\
-zsh-defer source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor %}\n\
-{{ hooks?.post | nl }}\
-"""
+source = "{{ hooks?.pre | nl }}source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor %}\n{{ hooks?.post | nl }}"
+defer = "{{ hooks?.pre | nl }}zsh-defer source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor %}\n{{ hooks?.post | nl }}"
+
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+apply = ["source"]
 
 
 # ---
@@ -25,16 +17,11 @@ zsh-defer source-with-zcompile{% for file in files %} \\\n  {{ file }}{% endfor 
 # ---
 [plugins.local-configs]
 local = "~/.config/zsh/config.d/"
-apply = ["source"]
 
 
 # ---
 # Install plugins
 # ---
-[plugins.zsh-defer]
-github = "romkatv/zsh-defer"
-apply = ["source-with-zcompile"]
-
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
 
@@ -64,9 +51,6 @@ github = "olets/zsh-abbr"
 
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
-
-[plugins.compinit]
-inline = "zsh-defer -c \"autoload -Uz compinit && compinit\""
 
 
 # ---
