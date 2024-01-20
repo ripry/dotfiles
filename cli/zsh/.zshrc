@@ -19,8 +19,8 @@ zcompile_if_not_compiled() {
 # Run `eval "$(cmd generate-script)"` with cache
 eval_script_with_cache() {
   local gen_script=$1
-  local cache_path=$2
-  local watching_path=$3 # config or binary
+  local watching_path=$2 # config or binary
+  local cache_path=${CACHE_HOME}/eval-script/${gen_script}.zsh
 
   if [[ ! -r ${cache_path} || ${watching_path} -nt ${cache_path} ]]; then
     mkdir -p $(dirname ${cache_path})
@@ -41,14 +41,12 @@ zcompile_if_not_compiled ${ZDOTDIR}/.zshrc
 export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 eval_script_with_cache \
   "${HOMEBREW_PREFIX}/bin/brew shellenv zsh" \
-  "${CACHE_HOME}/homebrew/shellenv.zsh" \
   "${HOMEBREW_PREFIX}/bin/brew"
 FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
 
 # Setup plugins with sheldon
 eval_script_with_cache \
-  "sheldon source" \
-  "${CACHE_HOME}/sheldon/source.zsh" \
+  "sheldon --quiet source" \
   "${CONFIG_HOME}/sheldon/plugins.toml"
 
 

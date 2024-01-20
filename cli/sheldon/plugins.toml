@@ -51,7 +51,6 @@ inline = "zsh-defer -c \"autoload -Uz compinit && compinit\""
 inline = """
 zsh-defer eval_script_with_cache \
   "mise activate zsh" \
-  "${CACHE_HOME}/mise/activate.zsh" \
   "$(which mise)"
 """
 
@@ -59,6 +58,5 @@ zsh-defer eval_script_with_cache \
 inline = """
 eval_script_with_cache \
   "starship init zsh" \
-  "${CACHE_HOME}/starship/init.zsh" \
   "$(which starship)"
 """
