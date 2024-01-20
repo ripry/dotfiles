@@ -1,9 +1,40 @@
 # zmodload zsh/zprof
 
-source ${ZDOTDIR}/scripts/set-base-directory.zsh
+# ---
+# Prepare utils
+# ---
+# Run `source` with zcompile
+source_with_compile() {
+  zcompile_if_not_compiled $1
+  builtin source $1
+}
+zcompile_if_not_compiled() {
+  local source=$1
+  local compiled=${source}.zwc
+  if [[ ! -r ${compiled} || ${source} -nt ${compiled} ]]; then
+    zcompile $1
+  fi
+}
 
-source ${ZDOTDIR}/scripts/prepare-source-optimization.zsh
-source ${ZDOTDIR}/scripts/prepare-eval-optimization.zsh
+# Run `eval "$(cmd generate-script)"` with cache
+eval_script_with_cache() {
+  local gen_script=$1
+  local cache_path=$2
+  local watching_path=$3 # config or binary
+
+  if [[ ! -r ${cache_path} || ${watching_path} -nt ${cache_path} ]]; then
+    mkdir -p $(dirname ${cache_path})
+    eval ${gen_script} > ${cache_path}
+    zcompile ${cache_path}
+  fi
+
+  source ${cache_path}
+}
+
+
+# ---
+# Start initializations
+# ---
 zcompile_if_not_compiled ${ZDOTDIR}/.zshrc
 
 # Init Homebrew
@@ -20,16 +51,8 @@ eval_script_with_cache \
   "${CACHE_HOME}/sheldon/source.zsh" \
   "${CONFIG_HOME}/sheldon/plugins.toml"
 
-# Init mise
-zsh-defer eval_script_with_cache \
-  "mise activate zsh" \
-  "${CACHE_HOME}/mise/activate.zsh" \
-  "$(which mise)"
 
-zsh-defer source ${ZDOTDIR}/scripts/run-compinit-faster.zsh
-
-zsh-defer source ${ZDOTDIR}/scripts/unset-base-directory.zsh
-
-if type zprof &>/dev/null ;then
-  zprof
-fi
+# ---
+# Show zsh startup profiles if zprof loaded
+# ---
+if type zprof &>/dev/null; then; zprof; fi;

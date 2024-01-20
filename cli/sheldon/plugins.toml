@@ -6,11 +6,18 @@ source = "{{ hooks?.pre | nl }}{% for file in files %}source_with_compile \"{{ f
 defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source_with_compile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 
 
-[plugins.zsh-defer]
-github = "romkatv/zsh-defer"
-
+# ---
+# Load local configs
+# ---
 [plugins.local-configs]
 local = "~/.config/zsh/config.d/"
+
+
+# ---
+# Install plugins
+# ---
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
 
 [plugins.fast-syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
@@ -33,5 +40,25 @@ apply = ["defer"]
 github = "b4b4r07/enhancd"
 apply = ["defer"]
 
+[plugins.compinit]
+inline = "zsh-defer -c \"autoload -Uz compinit && compinit\""
+
+
+# ---
+# Init CLI tools already installed
+# ---
+[plugins.mise]
+inline = """
+zsh-defer eval_script_with_cache \
+  "mise activate zsh" \
+  "${CACHE_HOME}/mise/activate.zsh" \
+  "$(which mise)"
+"""
+
 [plugins.starship]
-inline = "eval \"$(starship init zsh)\""
+inline = """
+eval_script_with_cache \
+  "starship init zsh" \
+  "${CACHE_HOME}/starship/init.zsh" \
+  "$(which starship)"
+"""

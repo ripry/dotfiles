@@ -21,7 +21,6 @@ symlink_configs() {
 ln -s ${SCRIPT_DIR}/.zshenv ~/.zshenv
 symlink_configs zsh
 symlink_configs zsh/config.d
-symlink_configs zsh/scripts
 
 
 brew install sheldon
