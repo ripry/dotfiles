@@ -35,8 +35,6 @@ eval-script-with-cache() {
 # ---
 # Start initializations
 # ---
-zcompile-if-not-compiled ${ZDOTDIR}/.zshrc
-
 # Init Homebrew
 export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 eval-script-with-cache \
@@ -48,6 +46,9 @@ FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
 eval-script-with-cache \
   "sheldon --quiet source" \
   "${CONFIG_HOME}/sheldon/plugins.toml"
+
+# Optimize next startup
+zsh-defer zcompile-if-not-compiled ${ZDOTDIR}/.zshrc
 
 
 # ---
