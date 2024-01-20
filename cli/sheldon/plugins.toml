@@ -42,6 +42,17 @@ github = "zdharma-continuum/fast-syntax-highlighting"
 
 [plugins.zsh-autocomplete]
 github = "marlonrichert/zsh-autocomplete"
+hooks.post = """
+zsh-defer -c '
+  bindkey "\\t" menu-select  # Tab: Entering completion menu
+  bindkey -M menuselect \\   # In completion menu
+    "\\t" menu-complete \\   # Tab: Go to next item
+    "$terminfo[kcbt]" reverse-menu-complete \\  # Shift + Tab: Go to previous item
+    "^[[C" .accept-line \\   # Right: Select item
+    "^[[D" .accept-line      # Left: Select item
+  zstyle ":autocomplete:*" add-space  # Do not add space to selected item
+'
+"""
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
