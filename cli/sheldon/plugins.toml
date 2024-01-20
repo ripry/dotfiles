@@ -1,4 +1,5 @@
 shell = "zsh"
+apply = ["defer"]
 
 
 [templates]
@@ -23,6 +24,7 @@ defer = """
 # ---
 [plugins.local-configs]
 local = "~/.config/zsh/config.d/"
+apply = ["source"]
 
 
 # ---
@@ -30,31 +32,26 @@ local = "~/.config/zsh/config.d/"
 # ---
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
+apply = ["source"]
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
-apply = ["defer"]
 
 [plugins.fast-syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
-apply = ["defer"]
 
 [plugins.zsh-autocomplete]
 github = "marlonrichert/zsh-autocomplete"
-apply = ["defer"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
-apply = ["defer"]
 
 [plugins.zsh-abbr]
 github = "olets/zsh-abbr"
-apply = ["defer"]
 
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
-apply = ["defer"]
 
 [plugins.compinit]
 inline = "zsh-defer -c \"autoload -Uz compinit && compinit\""
