@@ -4,11 +4,11 @@
 # Prepare utils
 # ---
 # Run `source` with zcompile
-source_with_compile() {
-  zcompile_if_not_compiled $1
+source-with-zcompile() {
+  zcompile-if-not-compiled $1
   builtin source $1
 }
-zcompile_if_not_compiled() {
+zcompile-if-not-compiled() {
   local source=$1
   local compiled=${source}.zwc
   if [[ ! -r ${compiled} || ${source} -nt ${compiled} ]]; then
@@ -16,8 +16,8 @@ zcompile_if_not_compiled() {
   fi
 }
 
-# Run `eval "$(cmd generate-script)"` with cache
-eval_script_with_cache() {
+# Run `eval "$(generate-script)"` with cache
+eval-script-with-cache() {
   local gen_script=$1
   local watching_path=$2 # config or binary
   local cache_path=${CACHE_HOME}/eval-script/${gen_script}.zsh
@@ -35,17 +35,17 @@ eval_script_with_cache() {
 # ---
 # Start initializations
 # ---
-zcompile_if_not_compiled ${ZDOTDIR}/.zshrc
+zcompile-if-not-compiled ${ZDOTDIR}/.zshrc
 
 # Init Homebrew
 export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-eval_script_with_cache \
+eval-script-with-cache \
   "${HOMEBREW_PREFIX}/bin/brew shellenv zsh" \
   "${HOMEBREW_PREFIX}/bin/brew"
 FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
 
 # Setup plugins with sheldon
-eval_script_with_cache \
+eval-script-with-cache \
   "sheldon --quiet source" \
   "${CONFIG_HOME}/sheldon/plugins.toml"
 

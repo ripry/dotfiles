@@ -2,8 +2,8 @@ shell = "zsh"
 
 
 [templates]
-source = "{{ hooks?.pre | nl }}{% for file in files %}source_with_compile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
-defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source_with_compile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+source = "{{ hooks?.pre | nl }}{% for file in files %}source-with-zcompile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source-with-zcompile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
 
 
 # ---
@@ -49,14 +49,14 @@ inline = "zsh-defer -c \"autoload -Uz compinit && compinit\""
 # ---
 [plugins.mise]
 inline = """
-zsh-defer eval_script_with_cache \
+zsh-defer eval-script-with-cache \
   "mise activate zsh" \
   "$(which mise)"
 """
 
 [plugins.starship]
 inline = """
-eval_script_with_cache \
+eval-script-with-cache \
   "starship init zsh" \
   "$(which starship)"
 """
