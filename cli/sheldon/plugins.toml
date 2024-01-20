@@ -2,8 +2,20 @@ shell = "zsh"
 
 
 [templates]
-source = "{{ hooks?.pre | nl }}{% for file in files %}source-with-zcompile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
-defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source-with-zcompile \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
+source = """
+{{ hooks?.pre | nl }}\
+{% for file in files %}\
+  source-with-zcompile \"{{ file }}\"\n\
+{% endfor %}\
+{{ hooks?.post | nl }}\
+"""
+defer = """
+{{ hooks?.pre | nl }}\
+{% for file in files %}\
+  zsh-defer source-with-zcompile \"{{ file }}\"\n\
+{% endfor %}\
+{{ hooks?.post | nl }}\
+"""
 
 
 # ---
