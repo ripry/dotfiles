@@ -19,6 +19,10 @@ local = "~/.config/zsh/config.d/"
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+apply = ["defer"]
+
 [plugins.fast-syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
 apply = ["defer"]
