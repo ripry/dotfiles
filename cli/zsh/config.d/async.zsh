@@ -1,9 +1,11 @@
+# ---
+# Aliases
+# ---
 # Replace major tools
 alias vi='nvim'
 alias vim='nvim'
 alias cat='bat --paging=never'
 alias ls='eza --icons --header --git --ignore-glob=.git'
-
 
 # Shorthands
 alias c='clear'

@@ -13,13 +13,6 @@ apply = ["source"]
 
 
 # ---
-# Load local configs
-# ---
-[plugins.local-configs]
-local = "~/.config/zsh/config.d/"
-
-
-# ---
 # Install plugins
 # ---
 [plugins.zsh-completions]
@@ -71,3 +64,16 @@ eval-script-with-cache \
   "starship init zsh" \
   "$(which starship)"
 """
+
+
+# ---
+# Load local configs
+# ---
+[plugins.local-configs]
+local = "~/.config/zsh/config.d/"
+use = ["sync.zsh"]
+apply = ["source"]
+
+[plugins.local-configs-async]
+local = "~/.config/zsh/config.d/"
+use = ["async.zsh"]

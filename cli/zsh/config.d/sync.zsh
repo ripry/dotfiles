@@ -1,3 +1,7 @@
+# ---
+# Options
+# ---
+# history
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
@@ -9,10 +13,19 @@ setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 setopt SHARE_HISTORY
 
-function open-history-finder() {
+# directory
+setopt AUTO_CD
+setopt AUTOPUSHD
+setopt PUSHD_IGNORE_DUPS
+
+
+# ---
+# Widgets
+# ---
+open-history-finder() {
   BUFFER=$(history -n -r 1 | fzf --exact --reverse --query="$LBUFFER")
   CURSOR=${#BUFFER}
   zle reset-prompt
 }
 zle -N open-history-finder
-bindkey '^R' open-history-finder
+bindkey "^R" open-history-finder
