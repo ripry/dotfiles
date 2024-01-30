@@ -78,6 +78,16 @@ yay -S wezterm
 # Install Windows app runner
 yay -S wine winetricks wine-gecko wine-mono lib32-gnutls
 
+
+# Setup docker
+# ref: https://wiki.archlinux.org/title/docker#Rootless_Docker_daemon
+yay -S docker-rootless-extras docker-compose docker-buildxg
+echo "$USER:165536:65536" | sudo tee -a /etc/subuid
+echo "$USER:165536:65536" | sudo tee -a /etc/subgid
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+systemctl --user enable --now docker.service
+
+
 # Setup zsh as default
 yay -S zsh
 chsh -s $(which zsh)

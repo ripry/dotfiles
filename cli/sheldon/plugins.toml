@@ -58,6 +58,13 @@ zsh-defer eval-script-with-cache \
   "$(which mise)"
 """
 
+[plugins.docker]
+inline = """
+zsh-defer eval-script-with-cache \
+  "docker completion zsh" \
+  "$(which docker)"
+"""
+
 [plugins.starship]
 inline = """
 eval-script-with-cache \

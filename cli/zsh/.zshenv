@@ -11,3 +11,5 @@ export STATE_HOME=${XDG_STATE_HOME:-~/.local/state}
 export HISTFILE=${ZDOTDIR:-${HOME}}/.zhistory
 export HISTSIZE=1200000
 export SAVEHIST=1000000
+
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
