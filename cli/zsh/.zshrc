@@ -38,7 +38,7 @@ eval-script-with-cache() {
 # Start initializations
 # ---
 # Init Homebrew
-export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+export HOMEBREW_PREFIX="/opt/homebrew"
 eval-script-with-cache \
   "${HOMEBREW_PREFIX}/bin/brew shellenv zsh" \
   "${HOMEBREW_PREFIX}/bin/brew"

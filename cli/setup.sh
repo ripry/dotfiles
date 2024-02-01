@@ -12,7 +12,7 @@ symlink_configs() {
 
   mkdir -p ${symlink_dest}
 
-  for conf_path in `find ${symlink_src} -maxdepth 1 -type f`; do
+  for conf_path in `gfind ${symlink_src} -maxdepth 1 -type f`; do
     ln -s ${conf_path} ${symlink_dest}/$(basename ${conf_path})
   done
 }
