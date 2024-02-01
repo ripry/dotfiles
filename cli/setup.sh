@@ -29,7 +29,7 @@ symlink_configs sheldon
 brew install \
   starship mise gh \
   fzf jq neovim \
-  bat bottom dust eza fd ripgrep
+  bat bottom dust eza fd ripgrep git-delta
 
 if ! type git &>/dev/null; then
   brew install git
