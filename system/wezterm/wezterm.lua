@@ -7,7 +7,7 @@ local config = {
         stretch = "Normal",
         style = "Normal",
     },
-    font_size = 11.0,
+    font_size = 14.0,
     window_decorations = 'INTEGRATED_BUTTONS | RESIZE',
 }
 
