@@ -7,12 +7,12 @@ CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
 symlink_configs() {
   local conf_dirname=$1
-  local symlink_src=${SCRIPT_DIR}/{$conf_dirname}
-  local symlink_dest=${CONFIG_HOME}/{$conf_dirname}
+  local symlink_src=${SCRIPT_DIR}/${conf_dirname}
+  local symlink_dest=${CONFIG_HOME}/${conf_dirname}
 
   mkdir -p ${symlink_dest}
 
-  for conf_path in `find maxdepth 1 ${symlink_src} -type f`; do
+  for conf_path in `find ${symlink_src} -maxdepth 1 -type f`; do
     ln -s ${conf_path} ${symlink_dest}/$(basename ${conf_path})
   done
 }
