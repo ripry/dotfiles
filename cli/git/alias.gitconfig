@@ -1,0 +1,2 @@
+[alias]
+  graph = log --graph --date-order --find-copies --find-renames --pretty=format:\"%C(yellow)<%h> %Cblue%an, %ad ・%Cgreen%d%Creset %s\" --all --date=relative
