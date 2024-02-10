@@ -35,5 +35,6 @@ if ! type git &>/dev/null; then
   brew install git
 fi
 symlink_configs git
+symlink_configs git/config.d
 
 source ~/.zshenv ${ZDOTDIR}/.zshrc

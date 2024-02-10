@@ -1,4 +1,4 @@
 [include]
-    path = base.gitconfig
-    path = alias.gitconfig
-    path = delta.gitconfig
+    path = config.d/base.conf
+    path = config.d/alias.conf
+    path = config.d/delta.conf
