@@ -1,35 +1,3 @@
-[core]
-    autocrlf = false
-    ignorecase = false
-    quotepath = false
-
-[color]
-    ui = true
-
-[init]
-    defaultBranch = main
-
-[fetch]
-    prune = true
-
-[pull]
-    rebase = true
-
-[push]
-    default = current
-
-[rebase]
-    autosquash = true
-    autostash = true
-
-[merge]
-    conflictstyle = zdiff3
-
-[diff]
-    colorMoved = default
-
-[grep]
-    line-number = true
-
 [include]
+    path = base.gitconfig
     path = delta.gitconfig
