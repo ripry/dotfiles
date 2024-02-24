@@ -80,12 +80,10 @@ yay -S wine winetricks wine-gecko wine-mono lib32-gnutls
 
 
 # Setup docker
-# ref: https://wiki.archlinux.org/title/docker#Rootless_Docker_daemon
-yay -S docker-rootless-extras docker-compose docker-buildxg
-echo "$USER:165536:65536" | sudo tee -a /etc/subuid
-echo "$USER:165536:65536" | sudo tee -a /etc/subgid
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
-systemctl --user enable --now docker.service
+yay -S docker docker-compose docker-buildx
+# ref: https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+sudo groupadd docker; sudo usermod -aG docker $USER; newgrp docker
+systemctl enable --now docker.service
 
 
 # Setup zsh as default
