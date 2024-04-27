@@ -21,7 +21,9 @@ symlink_configs() {
 symlink_configs environment.d
 symlink_configs sysmemd/user
 symlink_configs xremap
-symlink_configs wezterm
+symlink_configs alacritty
+symlink_configs tmux
+symlink_configs tmux-powerline
 
 
 sudo systemctl enable --now bluetooth.service
@@ -74,7 +76,7 @@ yay -S visual-studio-code-bin
 
 
 # Setup terminal
-yay -S wezterm
+yay -S alacritty tmux tmux-pluin-manager
 
 
 # Install Windows app runner
