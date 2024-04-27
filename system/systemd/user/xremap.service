@@ -3,7 +3,7 @@ Description = Xremap Daemon
 
 [Service]
 KillMode = process
-ExecStart = /usr/bin/xremap %h/.config/xremap/config.yml
+ExecStart = /usr/bin/xremap %h/.config/xremap/config.yaml
 Restart = always
 
 [Install]
