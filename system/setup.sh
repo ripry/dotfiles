@@ -34,6 +34,8 @@ sudo systemctl enable --now thermald.service
 # Setup browser connector for GNOME Shell extensions
 yay -S gnome-browser-connector
 
+# Fix broken dark theme of libadwaita
+yay -S xdg-desktop-portal-gnome
 
 # Setup key remapper
 # ref: https://extensions.gnome.org/extension/5060/xremap/
