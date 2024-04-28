@@ -55,7 +55,7 @@ github = "b4b4r07/enhancd"
 inline = """
 zsh-defer eval-script-with-cache \
   "mise activate zsh" \
-  "$(which mise)"
+  "$(which -p mise)"
 """
 
 [plugins.docker]
