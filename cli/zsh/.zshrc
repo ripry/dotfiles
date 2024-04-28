@@ -22,7 +22,7 @@ zcompile-if-not-compiled() {
 eval-script-with-cache() {
   local gen_script=$1
   local watching_path=$2 # config or binary
-  local cache_path=${CACHE_HOME}/eval-script/${gen_script}.zsh
+  local cache_path=${CACHE_HOME}/eval-script/${gen_script//\//\\}.zsh
 
   if [[ ! -r ${cache_path} || ${watching_path} -nt ${cache_path} ]]; then
     mkdir -p $(dirname ${cache_path})
