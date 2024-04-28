@@ -23,7 +23,6 @@ symlink_configs sysmemd/user
 symlink_configs xremap
 symlink_configs alacritty
 symlink_configs tmux
-symlink_configs tmux-powerline
 
 
 sudo systemctl enable --now bluetooth.service
