@@ -46,7 +46,7 @@ FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
 
 # Setup plugins with sheldon
 eval-script-with-cache \
-  "sheldon --quiet source" \
+  "sheldon source" \
   "${CONFIG_HOME}/sheldon/plugins.toml"
 
 # Optimize next startup
