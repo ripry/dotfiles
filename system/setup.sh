@@ -71,7 +71,7 @@ yay -S vivaldi vivaldi-ffmpeg-codecs vivaldi-widevine
 
 
 # Install editor
-yay -S visual-studio-code-bin
+yay -S visual-studio-code-bin cursor-bin
 
 
 # Setup terminal

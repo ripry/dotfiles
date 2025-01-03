@@ -6,6 +6,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias cat='bat --paging=never'
 alias ls='eza --icons --header --git --ignore-glob=.git'
+alias code='cursor'
 
 # Shorthands
 alias c='clear'
