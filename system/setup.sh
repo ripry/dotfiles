@@ -6,23 +6,14 @@
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
 
-symlink_configs() {
-  local conf_dirname=$1
-  local symlink_src=${SCRIPT_DIR}/${conf_dirname}
-  local symlink_dest=${CONFIG_HOME}/${conf_dirname}
+# Install config
+for rel_conf_path in `cd ${SCRIPT_DIR}; find * -type f -not -name *.sh; exit;`; do
+  src=${SCRIPT_DIR}/${rel_conf_path}
+  dest=${CONFIG_HOME}/${rel_conf_path}
 
-  mkdir -p ${symlink_dest}
-
-  for conf_path in `find ${symlink_src} -maxdepth 1 -type f`; do
-    ln -s ${conf_path} ${symlink_dest}/$(basename ${conf_path})
-  done
-}
-
-symlink_configs environment.d
-symlink_configs systemd/user
-symlink_configs xremap
-symlink_configs alacritty
-symlink_configs tmux
+  mkdir -p $(dirname ${dest})
+  ln -s ${src} ${dest}
+done
 
 
 # Install AUR helper
