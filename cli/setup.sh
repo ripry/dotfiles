@@ -2,29 +2,12 @@
 
 # Package Manager: Homebrew
 
-SCRIPT_DIR=$(cd $(dirname $0); pwd)
-CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
-
-symlink_configs() {
-  local conf_dirname=$1
-  local symlink_src=${SCRIPT_DIR}/${conf_dirname}
-  local symlink_dest=${CONFIG_HOME}/${conf_dirname}
-
-  mkdir -p ${symlink_dest}
-
-  for conf_path in `find ${symlink_src} -maxdepth 1 -type f`; do
-    ln -s ${conf_path} ${symlink_dest}/$(basename ${conf_path})
-  done
-}
+# Install config
+sh install.sh
 
 
-ln -s ${SCRIPT_DIR}/.zshenv ~/.zshenv
-symlink_configs zsh
-symlink_configs zsh/config.d
-
-
+# Install tools
 brew install sheldon
-symlink_configs sheldon
 
 brew install \
   starship mise gh \
@@ -34,7 +17,7 @@ brew install \
 if ! type git &>/dev/null; then
   brew install git
 fi
-symlink_configs git
-symlink_configs git/config.d
 
-source ~/.zshenv ${ZDOTDIR}/.zshrc
+
+# Reload shell config
+source ${HOME}/.zshenv ${ZDOTDIR}/.zshrc
