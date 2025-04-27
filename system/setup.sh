@@ -10,6 +10,9 @@ sh install.sh
 # Install AUR helper
 sudo pacman -S yay
 
+# Refresh Fontconfig cache
+fc-cache -f -v
+
 
 # Install thermal deamon
 yay -S thermald
