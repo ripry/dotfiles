@@ -1,10 +1,12 @@
 [Unit]
-Description = Xremap Daemon
+Description=Xremap
+After=default.target
 
 [Service]
-KillMode = process
-ExecStart = /usr/bin/xremap %h/.config/xremap/config.yaml
-Restart = always
+ExecStart=/usr/bin/xremap --watch=device %h/.config/xremap/config.yaml
+Restart=always
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=default.target
