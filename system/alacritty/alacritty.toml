@@ -16,3 +16,8 @@ decorations_theme_variant = "Dark"
 [font]
 normal = { family = "HackGen35 Console NF", style = "Regular" }
 size = 10.5
+
+[keyboard]
+bindings = [
+  { key = "Enter", mods = "Shift", chars = "\u001B\r" },
+]
