@@ -11,6 +11,10 @@ QT_IM_MODULES=fcitx
 XMODIFIERS=@im=fcitx
 SDL_IM_MODULE=fcitx
 
+## English weekday/month names (e.g. desktop clock widget) while keeping
+## the rest of the locale (LANG) as-is
+LC_TIME=en_US.utf8
+
 ##
 ## Use the XKB_DEFAULT_LAYOUT variable to set the keyboard layout. For example
 ## to start with Swedish keyboard layout set it to 'se'. If you are unsure what

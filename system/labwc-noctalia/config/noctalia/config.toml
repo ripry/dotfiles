@@ -1,5 +1,6 @@
 [shell]
 polkit_agent = true
+font_family = "Adwaita Sans"
 
 [theme]
 mode = "dark"
@@ -7,7 +8,7 @@ source = "builtin"
 builtin = "Ayu"
 
 [wallpaper.default]
-path = "/usr/share/backgrounds/gnome/amber-d.jxl"
+path = "/usr/share/backgrounds/gnome/glass-chip-d.jxl"
 
 [idle.behavior.lock]
 enabled = true
@@ -32,3 +33,46 @@ pinned = [ "Alacritty.desktop", "vivaldi-stable.desktop" ]
 auto_hide = true
 smart_auto_hide = false
 reserve_space = false
+
+[desktop_widgets]
+enabled = true
+widget_order = [ "weather_main", "clock_main", "date_main" ]
+
+[desktop_widgets.widget.weather_main]
+type = "weather"
+output = "eDP-1"
+cx = 273.0
+cy = 110.0
+box_width = 400.0
+box_height = 142.0
+
+    [desktop_widgets.widget.weather_main.settings]
+    color = "on_surface"
+    font_family = "DejaVu Sans"
+    background = false
+
+[desktop_widgets.widget.clock_main]
+type = "clock"
+output = "eDP-1"
+cx = 1640.0
+cy = 992.0
+box_width = 354.0
+box_height = 128.0
+
+    [desktop_widgets.widget.clock_main.settings]
+    format = "{:%-H:%M}"
+    font_family = "DejaVu Sans"
+    background = false
+
+[desktop_widgets.widget.date_main]
+type = "clock"
+output = "eDP-1"
+cx = 1670.0
+cy = 1098.0
+box_width = 256.0
+box_height = 53.0
+
+    [desktop_widgets.widget.date_main.settings]
+    format = "{:%-m/%d %a}"
+    font_family = "DejaVu Sans"
+    background = false
