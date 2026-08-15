@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
 # OS: CachyOS
-# DE: GNOME
+# DE: niri + Noctalia (see wayland/setup.sh)
+
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 # Install config
 sh install.sh
@@ -19,12 +21,14 @@ yay -S thermald
 sudo systemctl enable --now thermald.service
 
 
-# Setup browser connector for GNOME Shell extensions
-yay -S gnome-browser-connector
+# Cap battery charging at 80%
+sudo install -m 644 ${SCRIPT_DIR}/config-root/udev/rules.d/99-battery-charge-threshold.rules /etc/udev/rules.d/
+sudo udevadm control --reload && sudo udevadm trigger --subsystem-match=power_supply
 
 
 # Setup key remapper
-# ref: https://extensions.gnome.org/extension/5060/xremap/
+# The -gnome build has no deps and works fine under niri; only its
+# application-detection path is GNOME-specific, which config.yaml doesn't use.
 yay -S xremap-gnome-bin
 
 # Run xremap without sudo
@@ -72,24 +76,3 @@ chsh -s $(which zsh)
 # Setup Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-
-# Install GNOME Shell extensions manager
-yay -S extension-manager gnome-extensions-cli
-
-# Install input method integration
-gext install kimpanel@kde.org
-
-# Customize appearance
-gext install \
-  dash-to-dock@micxgx.gmail.com \
-  dash-to-panel@jderose9.github.com \
-  blur-my-shell@aunetx \
-  Vitals@CoreCoding.com \
-  appindicatorsupport@rgcjonas.gmail.com
-
-# Add useful functions
-gext install \
-  caffeine@patapon.info \
-  Battery-Health-Charging@maniacx.github.com \
-  another-window-session-manager@gmail.com

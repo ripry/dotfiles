@@ -46,8 +46,9 @@ grep -q pam_gnome_keyring /etc/pam.d/greetd || sudo sed -i \
   -e '/^session    include      system-local-login$/a session    [success=1 default=ignore] pam_succeed_if.so quiet user = greeter\nsession    optional     pam_gnome_keyring.so auto_start' \
   /etc/pam.d/greetd
 
-# Only one display manager may be enabled.
-sudo systemctl disable gdm
+# Only one display manager may be enabled. GDM was removed along with GNOME,
+# but disable it anyway in case this runs on a machine that still has it.
+sudo systemctl disable gdm 2>/dev/null || true
 sudo systemctl enable greetd
 
 echo "Done. Reboot to land on the noctalia-greeter login screen."
