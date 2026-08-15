@@ -32,6 +32,15 @@ sudo install -o greeter -g greeter -m 644 \
   "${SCRIPT_DIR}/config-root/noctalia-greeter/greeter.toml" \
   /var/lib/noctalia-greeter/greeter.toml
 
+# GDM's PAM stack unlocks the login keyring with the password you just
+# typed; greetd's doesn't, so the keyring stays locked and prompts after
+# the desktop comes up. Not symlinked from the repo on purpose -- a PAM
+# file writable from $HOME is an auth bypass waiting to happen.
+grep -q pam_gnome_keyring /etc/pam.d/greetd || sudo sed -i \
+  -e '/^auth       include      system-local-login$/a auth       optional     pam_gnome_keyring.so' \
+  -e '/^session    include      system-local-login$/a session    optional     pam_gnome_keyring.so auto_start' \
+  /etc/pam.d/greetd
+
 # Only one display manager may be enabled.
 sudo systemctl disable gdm
 sudo systemctl enable greetd
