@@ -11,6 +11,7 @@ source = "builtin"
 builtin = "Ayu"
 
 [idle.behavior.lock]
+action = "lock"
 enabled = true
 timeout = 600.0
 
@@ -21,6 +22,7 @@ command = "niri msg action power-off-monitors"
 resume_command = "niri msg action power-on-monitors"
 
 [idle.behavior.lock-and-suspend]
+action = "lock_and_suspend"
 enabled = true
 timeout = 900.0
 

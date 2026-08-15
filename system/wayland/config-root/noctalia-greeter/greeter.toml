@@ -1,0 +1,9 @@
+[session]
+default = "Niri"
+
+[output]
+scale = 1.5
+
+[cursor]
+theme = "Adwaita"
+size = 24

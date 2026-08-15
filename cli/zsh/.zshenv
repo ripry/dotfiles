@@ -1,3 +1,6 @@
+typeset -U path
+path=(~/.local/bin $path)
+
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export VISUAL="code --wait"
