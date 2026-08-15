@@ -40,10 +40,6 @@ systemctl --user enable --now xremap.service
 # Setup input method
 yay -S fcitx5 fcitx5-mozc fcitx5-config-qt
 
-# Autostart fcitx5 with XDG Autostart
-sudo mkdir -p /etc/xdg/autostart
-sudo cp /usr/share/applications/org.fcitx.Fcitx5.desktop /etc/xdg/autostart
-
 
 # Install fonts for Japanese
 yay -S noto-fonts-emoji noto-fonts-cjk ttf-hackgen
