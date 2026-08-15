@@ -34,11 +34,16 @@ sudo install -o greeter -g greeter -m 644 \
 
 # GDM's PAM stack unlocks the login keyring with the password you just
 # typed; greetd's doesn't, so the keyring stays locked and prompts after
-# the desktop comes up. Not symlinked from the repo on purpose -- a PAM
-# file writable from $HOME is an auth bypass waiting to happen.
+# the desktop comes up. greetd uses this same file for the greeter's own
+# session (there is no greetd-greeter file), and the greeter user has no
+# keyring -- without the pam_succeed_if guard it logs an err-priority
+# "couldn't unlock the login keyring", which shows up as red text on the
+# console during the handoff to the compositor.
+# Not symlinked from the repo on purpose -- a PAM file writable from $HOME
+# is an auth bypass waiting to happen.
 grep -q pam_gnome_keyring /etc/pam.d/greetd || sudo sed -i \
-  -e '/^auth       include      system-local-login$/a auth       optional     pam_gnome_keyring.so' \
-  -e '/^session    include      system-local-login$/a session    optional     pam_gnome_keyring.so auto_start' \
+  -e '/^auth       include      system-local-login$/a auth       [success=1 default=ignore] pam_succeed_if.so quiet user = greeter\nauth       optional     pam_gnome_keyring.so' \
+  -e '/^session    include      system-local-login$/a session    [success=1 default=ignore] pam_succeed_if.so quiet user = greeter\nsession    optional     pam_gnome_keyring.so auto_start' \
   /etc/pam.d/greetd
 
 # Only one display manager may be enabled.
