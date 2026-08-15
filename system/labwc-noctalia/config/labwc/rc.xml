@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<labwc_config>
+
+  <core>
+    <gap>10</gap>
+  </core>
+
+  <theme>
+    <name>Clearlooks-3.4</name>
+    <cornerRadius>8</cornerRadius>
+    <font name="sans" size="10" />
+  </theme>
+
+  <windowSwitcher preview="no" outlines="yes">
+    <osd style="thumbnail"/>
+  </windowSwitcher>
+
+  <keyboard>
+    <default />
+
+    <!-- Terminal -->
+    <keybind key="W-Return">
+      <action name="Execute" command="alacritty" />
+    </keybind>
+
+    <!-- "Mission Control"-ish: labwc's own native Alt-Tab switcher (thumbnail
+         OSD, configured above in <windowSwitcher>), just bound to Super too.
+         noctalia msg window-switcher doesn't work under labwc (always
+         reports "No Windows"), so we don't use it here. -->
+    <keybind key="W-Tab"><action name="NextWindow" /></keybind>
+    <keybind key="W-S-Tab"><action name="PreviousWindow" /></keybind>
+
+    <!-- Noctalia panels -->
+    <!-- App list / search (closest to GNOME's app grid) -->
+    <keybind key="W-space"><action name="Execute"><command>noctalia msg panel-toggle launcher</command></action></keybind>
+    <keybind key="W-s"><action name="Execute"><command>noctalia msg panel-toggle control-center</command></action></keybind>
+    <keybind key="W-,"><action name="Execute"><command>noctalia msg settings-toggle</command></action></keybind>
+
+    <keybind key="XF86AudioRaiseVolume"><action name="Execute"><command>noctalia msg volume-up</command></action></keybind>
+    <keybind key="XF86AudioLowerVolume"><action name="Execute"><command>noctalia msg volume-down</command></action></keybind>
+    <keybind key="XF86AudioMute"><action name="Execute"><command>noctalia msg volume-mute</command></action></keybind>
+    <keybind key="XF86MonBrightnessUp"><action name="Execute"><command>noctalia msg brightness-up</command></action></keybind>
+    <keybind key="XF86MonBrightnessDown"><action name="Execute"><command>noctalia msg brightness-down</command></action></keybind>
+  </keyboard>
+
+  <mouse>
+    <default />
+  </mouse>
+
+</labwc_config>

@@ -1,0 +1,14 @@
+# labwc autostart
+
+# fcitx5 input method (GNOME normally starts this via its own session/IBus
+# glue; under labwc it must be launched explicitly)
+fcitx5 &
+
+# Noctalia (bar / launcher / notifications / control center)
+noctalia &
+
+# kanshi: apply saved monitor layout/scale (~/.config/kanshi/config)
+kanshi &
+
+# Polkit auth is handled by Noctalia's own built-in agent now
+# (~/.config/noctalia/config.toml: [shell] polkit_agent = true)

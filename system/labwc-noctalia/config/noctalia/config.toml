@@ -1,0 +1,26 @@
+[shell]
+polkit_agent = true
+
+[idle.behavior.lock]
+enabled = true
+timeout = 600.0
+
+[idle.behavior.screen-off]
+enabled = true
+timeout = 660.0
+command = "wlopm --off eDP-1"
+resume_command = "wlopm --on eDP-1"
+
+[idle.behavior.lock-and-suspend]
+enabled = true
+timeout = 900.0
+
+[bar.default]
+position = "right"
+
+[dock]
+enabled = true
+pinned = [ "Alacritty.desktop", "vivaldi-stable.desktop" ]
+auto_hide = true
+smart_auto_hide = false
+reserve_space = false
