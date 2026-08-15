@@ -2,6 +2,9 @@
 polkit_agent = true
 font_family = "Adwaita Sans"
 
+[shell.screenshot]
+directory = "~/Pictures/Screenshots"
+
 [theme]
 mode = "dark"
 source = "builtin"
