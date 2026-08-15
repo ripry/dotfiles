@@ -10,9 +10,6 @@ mode = "dark"
 source = "builtin"
 builtin = "Ayu"
 
-[wallpaper.default]
-path = "/usr/share/backgrounds/gnome/glass-chip-d.jxl"
-
 [idle.behavior.lock]
 enabled = true
 timeout = 600.0
