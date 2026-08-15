@@ -7,6 +7,7 @@
 ## so it must be set explicitly here)
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
+QT_IM_MODULES=fcitx
 XMODIFIERS=@im=fcitx
 SDL_IM_MODULE=fcitx
 

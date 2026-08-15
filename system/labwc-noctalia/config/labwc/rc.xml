@@ -47,6 +47,9 @@
     <keybind key="XF86AudioMute"><action name="Execute"><command>noctalia msg volume-mute</command></action></keybind>
     <keybind key="XF86MonBrightnessUp"><action name="Execute"><command>noctalia msg brightness-up</command></action></keybind>
     <keybind key="XF86MonBrightnessDown"><action name="Execute"><command>noctalia msg brightness-down</command></action></keybind>
+
+    <keybind key="Print"><action name="Execute"><command>noctalia msg screenshot-fullscreen</command></action></keybind>
+    <keybind key="W-Print"><action name="Execute"><command>noctalia msg screenshot-region</command></action></keybind>
   </keyboard>
 
   <mouse>
