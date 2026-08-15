@@ -1,3 +1,9 @@
 modmap:
   - remap:
       CapsLock: Ctrl_L
+
+experimental_map:
+  - remap:
+      CapsLock:
+        double: Super_L
+        timeout: 400

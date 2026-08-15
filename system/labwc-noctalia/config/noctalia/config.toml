@@ -1,6 +1,14 @@
 [shell]
 polkit_agent = true
 
+[theme]
+mode = "dark"
+source = "builtin"
+builtin = "Ayu"
+
+[wallpaper.default]
+path = "/usr/share/backgrounds/gnome/amber-d.jxl"
+
 [idle.behavior.lock]
 enabled = true
 timeout = 600.0

@@ -15,6 +15,10 @@
     <osd style="thumbnail"/>
   </windowSwitcher>
 
+  <regions>
+    <region name="center" x="10%" y="10%" height="80%" width="80%" />
+  </regions>
+
   <keyboard>
     <default />
 
@@ -23,15 +27,17 @@
       <action name="Execute" command="alacritty" />
     </keybind>
 
-    <!-- "Mission Control"-ish: labwc's own native Alt-Tab switcher (thumbnail
-         OSD, configured above in <windowSwitcher>), just bound to Super too.
-         noctalia msg window-switcher doesn't work under labwc (always
-         reports "No Windows"), so we don't use it here. -->
+    <keybind key="W-c">
+      <action name="SnapToRegion" region="center" />
+    </keybind>
+
+    <keybind key="W-f">
+      <action name="ToggleFullscreen" />
+    </keybind>
+
     <keybind key="W-Tab"><action name="NextWindow" /></keybind>
     <keybind key="W-S-Tab"><action name="PreviousWindow" /></keybind>
 
-    <!-- Noctalia panels -->
-    <!-- App list / search (closest to GNOME's app grid) -->
     <keybind key="W-space"><action name="Execute"><command>noctalia msg panel-toggle launcher</command></action></keybind>
     <keybind key="W-s"><action name="Execute"><command>noctalia msg panel-toggle control-center</command></action></keybind>
     <keybind key="W-,"><action name="Execute"><command>noctalia msg settings-toggle</command></action></keybind>
