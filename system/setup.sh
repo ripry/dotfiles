@@ -26,6 +26,13 @@ sudo install -m 644 ${SCRIPT_DIR}/config-root/udev/rules.d/99-battery-charge-thr
 sudo udevadm control --reload && sudo udevadm trigger --subsystem-match=power_supply
 
 
+# Shorten the post-resume lid-switch holdoff. Don't `systemctl restart
+# systemd-logind` here -- kills niri's DRM master under a live session.
+sudo mkdir -p /etc/systemd/logind.conf.d
+sudo install -m 644 ${SCRIPT_DIR}/config-root/systemd/logind.conf.d/holdoff.conf /etc/systemd/logind.conf.d/
+echo "Reboot required for the new HoldoffTimeoutSec to take effect."
+
+
 # Setup key remapper
 # The -gnome build has no deps and works fine under niri; only its
 # application-detection path is GNOME-specific, which config.yaml doesn't use.
