@@ -33,6 +33,13 @@ sudo install -m 644 ${SCRIPT_DIR}/config-root/systemd/logind.conf.d/holdoff.conf
 echo "Reboot required for the new HoldoffTimeoutSec to take effect."
 
 
+# Patch niri-session's deprecated import-environment call on every niri
+# (re)install, until https://github.com/niri-wm/niri/pull/3572 merges.
+sudo install -m 755 ${SCRIPT_DIR}/config-root/local/bin/patch-niri-session /usr/local/bin/
+sudo install -m 644 ${SCRIPT_DIR}/config-root/pacman.d/hooks/niri-import-environment-patch.hook /etc/pacman.d/hooks/
+sudo /usr/local/bin/patch-niri-session
+
+
 # Setup key remapper
 # The -gnome build has no deps and works fine under niri; only its
 # application-detection path is GNOME-specific, which config.yaml doesn't use.

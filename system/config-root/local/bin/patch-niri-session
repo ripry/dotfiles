@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+# Run by pacman.d/hooks/niri-import-environment-patch.hook after every niri
+# (re)install. The stock niri-session calls `systemctl --user
+# import-environment` with no arguments, which systemd deprecates and prints
+# a harmless warning to the TTY on every login.
+# Upstream fix (unmerged): https://github.com/niri-wm/niri/pull/3572
+#
+# The trailing `$` anchor means this is a no-op once already patched, so it's
+# safe to rerun on every niri transaction.
+
+set -euo pipefail
+
+sed -i "s#    systemctl --user import-environment\$#    systemctl --user import-environment \$(printenv | cut -d'=' -f1 | tr '\\\\n' ' ')#" /usr/bin/niri-session

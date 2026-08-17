@@ -1,0 +1,10 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = niri
+
+[Action]
+Description = Patch niri-session import-environment deprecation warning
+When = PostTransaction
+Exec = /usr/local/bin/patch-niri-session
