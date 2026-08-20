@@ -1,6 +1,7 @@
 [shell]
 polkit_agent = true
 font_family = "Adwaita Sans"
+niri_overview_type_to_launch_enabled = true
 
 [shell.screenshot]
 directory = "~/Pictures/Screenshots"
