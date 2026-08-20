@@ -51,13 +51,6 @@ github = "b4b4r07/enhancd"
 # ---
 # Init CLI tools already installed
 # ---
-[plugins.mise]
-inline = """
-zsh-defer eval-script-with-cache \
-  "mise activate zsh" \
-  "$(which -p mise)"
-"""
-
 [plugins.docker]
 inline = """
 zsh-defer eval-script-with-cache \

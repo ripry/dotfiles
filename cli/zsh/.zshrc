@@ -37,12 +37,10 @@ eval-script-with-cache() {
 # ---
 # Start initializations
 # ---
-# Init Homebrew
-export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+# Activate mise (puts mise-managed tools, incl. sheldon, on PATH)
 eval-script-with-cache \
-  "${HOMEBREW_PREFIX}/bin/brew shellenv zsh" \
-  "${HOMEBREW_PREFIX}/bin/brew"
-FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
+  "mise activate zsh" \
+  "$(which -p mise)"
 
 # Setup plugins with sheldon
 eval-script-with-cache \

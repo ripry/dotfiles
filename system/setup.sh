@@ -87,6 +87,5 @@ yay -S zsh
 chsh -s $(which zsh)
 
 
-# Setup Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Install mise
+sudo pacman -S --needed mise
