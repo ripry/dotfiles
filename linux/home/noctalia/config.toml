@@ -11,6 +11,9 @@ mode = "dark"
 source = "builtin"
 builtin = "Ayu"
 
+[backdrop]
+enabled = true
+
 [idle.behavior.lock]
 action = "lock"
 enabled = true
