@@ -1,0 +1,5 @@
+[package-manager]
+requires = ["yay"]
+# pacman -S takes no version selector, so a pin can't be honoured.
+supports_version_pins = false
+os = ["linux"]

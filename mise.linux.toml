@@ -1,0 +1,144 @@
+# The aur: manager has to exist before the packages step, hence pre-packages.
+[bootstrap.hooks.pre-packages]
+run = "mkdir -p ~/.local/share/mise/plugins && ln -sfn ~/dotfiles/plugins/aur ~/.local/share/mise/plugins/aur"
+
+[bootstrap.packages]
+"pacman:yay" = "latest"
+"pacman:zsh" = "latest"
+"pacman:thermald" = "latest"
+"pacman:docker" = "latest"
+"pacman:docker-compose" = "latest"
+"pacman:docker-buildx" = "latest"
+"pacman:fcitx5" = "latest"
+"pacman:fcitx5-configtool" = "latest"
+"pacman:noto-fonts-emoji" = "latest"
+"pacman:noto-fonts-cjk" = "latest"
+"pacman:alacritty" = "latest"
+"pacman:tmux" = "latest"
+"pacman:niri" = "latest"
+"pacman:xwayland-satellite" = "latest"
+"pacman:noctalia" = "latest"
+"pacman:noctalia-greeter" = "latest"
+"pacman:vivaldi" = "latest"
+"pacman:vivaldi-ffmpeg-codecs" = "latest"
+"aur:ttf-hackgen" = "latest"
+"aur:tmux-plugin-manager" = "latest"
+"aur:fcitx5-mozc-ut" = "latest"
+"aur:xremap-wlroots-bin" = "latest"
+
+[bootstrap.user]
+login_shell = "/usr/bin/zsh"
+
+[bootstrap.services.thermald]
+state = "running"
+enabled = true
+
+[bootstrap.services.docker]
+state = "running"
+enabled = true
+
+# Only one display manager may be enabled.
+[bootstrap.services.greetd]
+enabled = true
+
+[bootstrap.files."/etc/udev/rules.d/99-battery-charge-threshold.rules"]
+source = "linux/root/etc/udev/rules.d/99-battery-charge-threshold.rules"
+owner = "root"
+group = "root"
+mode = "0644"
+
+# Reboot required for a changed HoldoffTimeoutSec. Don't `systemctl restart
+# systemd-logind` -- it kills niri's DRM master under a live session.
+[bootstrap.files."/etc/systemd/logind.conf.d/holdoff.conf"]
+source = "linux/root/etc/systemd/logind.conf.d/holdoff.conf"
+owner = "root"
+group = "root"
+mode = "0644"
+
+# uinput must be loaded and group-writable for xremap to run without sudo.
+# ref: https://github.com/xremap/xremap/blob/master/doc/running_without_sudo.md
+[bootstrap.files."/etc/modules-load.d/uinput.conf"]
+source = "linux/root/etc/modules-load.d/uinput.conf"
+owner = "root"
+group = "root"
+mode = "0644"
+
+[bootstrap.files."/etc/udev/rules.d/99-input.rules"]
+source = "linux/root/etc/udev/rules.d/99-input.rules"
+owner = "root"
+group = "root"
+mode = "0644"
+
+# Patch niri-session's deprecated import-environment call on every niri
+# (re)install, until https://github.com/niri-wm/niri/pull/3572 merges.
+[bootstrap.files."/usr/local/bin/patch-niri-session"]
+source = "linux/root/usr/local/bin/patch-niri-session"
+owner = "root"
+group = "root"
+mode = "0755"
+
+[bootstrap.files."/etc/pacman.d/hooks/niri-import-environment-patch.hook"]
+source = "linux/root/etc/pacman.d/hooks/niri-import-environment-patch.hook"
+owner = "root"
+group = "root"
+mode = "0644"
+
+[bootstrap.files."/etc/greetd/config.toml"]
+source = "linux/root/etc/greetd/config.toml"
+owner = "root"
+group = "root"
+mode = "0644"
+
+# Owned by greeter: it runs as that user and can't traverse a 0700 home.
+[bootstrap.files."/var/lib/noctalia-greeter/greeter.toml"]
+source = "linux/root/var/lib/noctalia-greeter/greeter.toml"
+owner = "greeter"
+group = "greeter"
+mode = "0644"
+
+[dotfiles]
+"~/.config/mise/config.linux.toml" = "~/dotfiles/mise.linux.toml"
+"~/.config/niri/config.kdl" = "~/dotfiles/linux/home/niri/config.kdl"
+"~/.config/noctalia/config.toml" = "~/dotfiles/linux/home/noctalia/config.toml"
+"~/.config/xremap/config.yaml" = "~/dotfiles/linux/home/xremap/config.yaml"
+"~/.config/systemd/user/xremap.service" = "~/dotfiles/linux/home/systemd/user/xremap.service"
+"~/.config/environment.d/im.conf" = "~/dotfiles/linux/home/environment.d/im.conf"
+"~/.config/fontconfig/fonts.conf" = "~/dotfiles/linux/home/fontconfig/fonts.conf"
+"~/.config/alacritty/alacritty.toml" = "~/dotfiles/linux/home/alacritty/alacritty.toml"
+"~/.config/tmux/tmux.conf" = "~/dotfiles/linux/home/tmux/tmux.conf"
+"~/.config/code-flags.conf" = "~/dotfiles/linux/home/code-flags.conf"
+"~/.config/electron-flags.conf" = "~/dotfiles/linux/home/electron-flags.conf"
+"~/.config/vivaldi-stable.conf" = "~/dotfiles/linux/home/vivaldi-stable.conf"
+
+# GDM's PAM stack unlocked the login keyring with the password you just typed;
+# greetd's doesn't, so the keyring stays locked and prompts once the desktop is
+# up. The pam_succeed_if guard skips the greeter user, which has no keyring and
+# would otherwise log a red "couldn't unlock the login keyring" on the console.
+# Inserted at a fixed position: the stack is order-sensitive, so appending
+# (what a [dotfiles] block entry would do) lands after pam_systemd and breaks.
+[tasks.pam-keyring]
+description = "Unlock the login keyring from greetd's PAM stack"
+run = """
+grep -q pam_gnome_keyring /etc/pam.d/greetd || sudo sed -i \
+  -e '/^auth       include      system-local-login$/a auth       [success=1 default=ignore] pam_succeed_if.so quiet user = greeter\\nauth       optional     pam_gnome_keyring.so' \
+  -e '/^session    include      system-local-login$/a session    [success=1 default=ignore] pam_succeed_if.so quiet user = greeter\\nsession    optional     pam_gnome_keyring.so auto_start' \
+  /etc/pam.d/greetd
+"""
+
+[tasks.groups]
+description = "Join the input/docker groups (bootstrap.users can't template $USER)"
+run = """
+sudo gpasswd -a "$USER" input
+sudo gpasswd -a "$USER" docker
+"""
+
+[bootstrap.hooks.post-packages]
+run = ["mise run groups", "mise run pam-keyring", "fc-cache -f"]
+
+[bootstrap.hooks.final]
+run = [
+  "systemctl --user enable --now xremap.service",
+  "sudo /usr/local/bin/patch-niri-session",
+  "sudo udevadm control --reload",
+  "sudo udevadm trigger --subsystem-match=power_supply",
+]

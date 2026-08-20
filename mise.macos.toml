@@ -1,0 +1,22 @@
+[bootstrap.hooks.pre-packages]
+run = "softwareupdate --install-rosetta --agree-to-license"
+
+[bootstrap.packages]
+"brew:zsh" = "latest"
+"brew:findutils" = "latest"
+"brew-cask:wezterm" = "latest"
+"brew-cask:vivaldi" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:cursor" = "latest"
+"brew-cask:rancher" = "latest"
+"brew-cask:karabiner-elements" = "latest"
+"brew-cask:rectangle" = "latest"
+"brew-cask:scroll-reverser" = "latest"
+"brew-cask:font-hackgen-nerd" = "latest"
+
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/zsh"
+
+[dotfiles]
+"~/.config/mise/config.macos.toml" = "~/dotfiles/mise.macos.toml"
+"~/.config/wezterm/wezterm.lua" = "~/dotfiles/macos/home/wezterm/wezterm.lua"

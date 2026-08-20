@@ -1,0 +1,3 @@
+# Opt-in until 2027.6.0 makes it the default.
+# Set MISE_AUTO_ENV=false where only the portable half is wanted (DevContainer).
+auto_env = true
