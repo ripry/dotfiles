@@ -7,6 +7,6 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
         # Launch a new instance of the agent
         [ ! -d "$HOME/.ssh" ] && mkdir $HOME/.ssh
         ssh-agent -s &> $HOME/.ssh/ssh-agent
-   fi
-   eval `cat $HOME/.ssh/ssh-agent`
+    fi
+    eval `cat $HOME/.ssh/ssh-agent` >/dev/null
 fi
