@@ -47,10 +47,9 @@ owner = "root"
 group = "root"
 mode = "0644"
 
-# Reboot required for a changed HoldoffTimeoutSec. Don't `systemctl restart
-# systemd-logind` -- it kills niri's DRM master under a live session.
-[bootstrap.files."/etc/systemd/logind.conf.d/holdoff.conf"]
-source = "linux/root/etc/systemd/logind.conf.d/holdoff.conf"
+# https://docs.noctalia.dev/noctalia/compositor-settings/niri/#laptop
+[bootstrap.files."/etc/systemd/logind.conf.d/lid-switch.conf"]
+source = "linux/root/etc/systemd/logind.conf.d/lid-switch.conf"
 owner = "root"
 group = "root"
 mode = "0644"
