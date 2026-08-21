@@ -2,17 +2,73 @@
 polkit_agent = true
 font_family = "Adwaita Sans"
 niri_overview_type_to_launch_enabled = true
+corner_radius_scale = 2.0
 
 [shell.screenshot]
 directory = "~/Pictures/Screenshots"
 
+[shell.launcher]
+app_grid = true
+
+[shell.panel]
+control_center_position = "top_right"
+open_near_click_control_center = true
+open_near_click_session = true
+
+[shell.screen_corners]
+enabled = true
+size = 20
+
+[shell.session]
+show_shortcuts = false
+
+    [[shell.session.actions]]
+    action = "lock"
+    enabled = false
+    shortcut = "1"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    shortcut = "2"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    enabled = false
+    shortcut = "3"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
+
 [theme]
 mode = "dark"
-source = "builtin"
+source = "wallpaper"
 builtin = "Ayu"
+community_palette = "Kemuri"
+wallpaper_scheme = "m3-rainbow"
+
+[theme.templates]
+enable_builtin_templates = false
+enable_community_templates = false
 
 [backdrop]
 enabled = true
+
+[location]
+auto_locate = true
+address = "Itabashi, Japan"
 
 [idle.behavior.lock]
 action = "lock"
@@ -30,15 +86,130 @@ action = "lock_and_suspend"
 enabled = true
 timeout = 900.0
 
+[hot_corners.top_left]
+command = "noctalia msg session lock"
+
+[control_center]
+hidden_tabs = [ "media" ]
+
 [bar.default]
 position = "right"
+thickness = 32
+margin_edge = 4
+widget_spacing = 12
+background_opacity = 0.65
+font_family = "DejaVu Sans Mono"
+start = [ "control-center", "group:g3", "workspaces" ]
+center = [ "group:g1", "Devider", "group:g2" ]
+end = [ "network", "bluetooth", "volume", "brightness", "battery", "tray", "session" ]
+
+    [[bar.default.capsule_group]]
+    id = "g1"
+    enabled = true
+    members = [ "DateIcon", "date" ]
+    fill = "surface_variant"
+    opacity = 0.0
+    padding = 0.0
+    widget_spacing = 8
+    accordion = false
+    accordion_direction = "end"
+
+    [[bar.default.capsule_group]]
+    id = "g2"
+    enabled = true
+    members = [ "clock", "weather" ]
+    fill = "surface_variant"
+    opacity = 0.0
+    padding = 0.0
+    widget_spacing = 8
+    accordion = false
+    accordion_direction = "end"
+
+    [[bar.default.capsule_group]]
+    id = "g3"
+    enabled = true
+    members = [ "cpu", "sysmon", "ram" ]
+    fill = "surface_variant"
+    opacity = 0.0
+    padding = 6.0
+    widget_spacing = 10
+    accordion = false
+    accordion_direction = "end"
+
+[widget.DateIcon]
+type = "custom_button"
+glyph = "calendar-event-filled"
+interactive = false
+
+[widget.Devider]
+type = "text"
+text = "—"
+interactive = false
+
+[widget.date]
+vertical_format = "%m %d"
+
+[widget.weather]
+show_temperature = false
+
+[widget.cpu]
+show_value = false
+
+[widget.ram]
+stat = "ram_pct"
+show_value = false
+
+[widget.sysmon]
+stat = "gpu_usage"
+glyph = "device-desktop"
+show_value = false
+
+[widget.network]
+show_label = false
+
+[widget.volume]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.battery]
+show_label = false
+
+[widget.workspaces]
+show_labels = false
 
 [dock]
 enabled = true
-pinned = [ "Alacritty.desktop", "vivaldi-stable.desktop" ]
+pinned = [ "vivaldi-stable", "Alacritty", "org.gnome.Nautilus", "dev.zed.Zed", "discord", "steam" ]
 auto_hide = true
 smart_auto_hide = false
 reserve_space = false
+icon_size = 56
+magnification_scale = 1.25
+launcher_position = "end"
+margin_edge = 16
+main_axis_padding = 8
+cross_axis_padding = 4
+background_opacity = 0.75
+shadow = false
+show_dots = true
+show_instance_count = false
+
+[wallpaper]
+directory = "~/Pictures/Wallpapers"
+per_monitor_directories = true
+
+[wallpaper.automation]
+enabled = true
+interval_seconds = 300
+recursive = false
+
+[plugins]
+enabled = [ "noctalia/mpvpaper" ]
+
+[plugin_settings."noctalia/mpvpaper"]
+video_directory = "~/Videos/Wallpapers"
 
 [desktop_widgets]
 enabled = true
@@ -51,6 +222,8 @@ cx = 273.0
 cy = 110.0
 box_width = 400.0
 box_height = 142.0
+placement_width = 1920.0
+placement_height = 1200.0
 
     [desktop_widgets.widget.weather_main.settings]
     color = "on_surface"
@@ -64,6 +237,8 @@ cx = 1640.0
 cy = 992.0
 box_width = 354.0
 box_height = 128.0
+placement_width = 1920.0
+placement_height = 1200.0
 
     [desktop_widgets.widget.clock_main.settings]
     format = "{:%-H:%M}"
@@ -77,6 +252,8 @@ cx = 1670.0
 cy = 1098.0
 box_width = 256.0
 box_height = 53.0
+placement_width = 1920.0
+placement_height = 1200.0
 
     [desktop_widgets.widget.date_main.settings]
     format = "{:%-m/%d %a}"
