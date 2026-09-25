@@ -2,6 +2,7 @@
 polkit_agent = true
 font_family = "Adwaita Sans"
 niri_overview_type_to_launch_enabled = true
+umbriel_overview_type_to_launch_enabled = true
 corner_radius_scale = 2.0
 
 [shell.screenshot]
@@ -78,8 +79,8 @@ timeout = 600.0
 [idle.behavior.screen-off]
 enabled = true
 timeout = 660.0
-command = "niri msg action power-off-monitors"
-resume_command = "niri msg action power-on-monitors"
+command = "umbriel msg dpms-off"
+resume_command = "umbriel msg dpms-on"
 
 [idle.behavior.lock-and-suspend]
 action = "lock_and_suspend"

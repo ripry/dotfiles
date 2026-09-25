@@ -25,6 +25,8 @@ run = "mkdir -p ~/.local/share/mise/plugins && ln -sfn ~/dotfiles/plugins/aur ~/
 "aur:tmux-plugin-manager" = "latest"
 "aur:fcitx5-mozc-ut" = "latest"
 "aur:xremap-wlroots-bin" = "latest"
+"aur:umbriel-git" = "latest"
+"aur:xdg-desktop-portal-umbriel-git" = "latest"
 
 [bootstrap.user]
 login_shell = "/usr/bin/zsh"
@@ -98,6 +100,7 @@ mode = "0644"
 [dotfiles]
 "~/.config/mise/config.linux.toml" = "~/dotfiles/mise.linux.toml"
 "~/.config/niri/config.kdl" = "~/dotfiles/linux/home/niri/config.kdl"
+"~/.config/umbriel/config.toml" = "~/dotfiles/linux/home/umbriel/config.toml"
 "~/.config/noctalia/config.toml" = "~/dotfiles/linux/home/noctalia/config.toml"
 "~/.config/xremap/config.yaml" = "~/dotfiles/linux/home/xremap/config.yaml"
 "~/.config/systemd/user/xremap.service" = "~/dotfiles/linux/home/systemd/user/xremap.service"

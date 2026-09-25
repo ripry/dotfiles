@@ -1,0 +1,151 @@
+# Umbriel + Noctalia, ported from linux/home/niri/config.kdl to feel like niri.
+# https://docs.noctalia.dev/umbriel/
+
+[general]
+autostart = ["noctalia"]
+show_cheatsheet = false
+
+[environment]
+LC_TIME = "en_US.utf8"
+
+# https://docs.noctalia.dev/noctalia/compositor-settings/niri/#laptop
+[events]
+lid_close = "noctalia msg session lock-and-suspend"
+
+[output.eDP-1]
+mode = "2880x1800@120"
+scale = 1.5
+position = [0, 0]
+
+[output.DP-1]
+mode = "3840x2160@60"
+scale = 1.25
+position = [1920, 0]
+
+[input.keyboard]
+repeat_delay = 400
+repeat_rate = 40
+
+[input.touchpad]
+tap = true
+natural_scroll = true
+
+[input.focus]
+follows_mouse = true
+follows_mouse_max_scroll = 0.0
+
+[layout]
+gap = 10
+extent_presets = [0.333, 0.5, 0.667]
+
+[layout.scrolling]
+default_extent_fraction = 0.5
+center_focused = "on_overflow"
+
+[appearance]
+prefer_no_csd = true
+border_width = 2
+corner_radius = 16
+
+[colors.border]
+focused = "#5a5f6b"
+unfocused = "#2e3138"
+
+[[window_rule]]
+match.app_id = "^fcitx$"
+default_floating = true
+border_width = 0
+corner_radius = 8
+shadow = false
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.Noctalia$"
+default_floating = true
+default_floating_size_px = { width = 1080, height = 920 }
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.UmbrielSharePicker$"
+default_floating = true
+default_floating_size_px = { width = 800, height = 600 }
+
+[[layer_rule]]
+match.namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd|desktop-widget-[^\"]*)$"
+blur = true
+blur_ignore_alpha = 0.5
+blur_popups = true
+blur_optimized = false
+
+[overview]
+background_blur = true
+workspace_wallpaper = true
+
+[keybinds]
+"Mod+Shift+question" = "cheatsheet-toggle"
+"Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+
+"Mod+Return" = { action = "spawn:alacritty", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+
+"Mod+Space" = "spawn:noctalia msg panel-toggle launcher"
+"Mod+S" = "spawn:noctalia msg panel-toggle control-center"
+"Mod+Comma" = "spawn:noctalia msg settings-toggle"
+"Alt+Tab" = "spawn:noctalia msg window-switcher"
+
+"XF86AudioRaiseVolume" = { action = "spawn:noctalia msg volume-up", allow_when_locked = true }
+"XF86AudioLowerVolume" = { action = "spawn:noctalia msg volume-down", allow_when_locked = true }
+"XF86AudioMute" = { action = "spawn:noctalia msg volume-mute", allow_when_locked = true }
+"XF86MonBrightnessUp" = { action = "spawn:noctalia msg brightness-up", allow_when_locked = true }
+"XF86MonBrightnessDown" = { action = "spawn:noctalia msg brightness-down", allow_when_locked = true }
+
+"Print" = "spawn:noctalia msg screenshot-fullscreen"
+"Mod+Print" = "spawn:noctalia msg screenshot-region"
+
+"Mod+Left" = "window-focus-left"
+"Mod+Right" = "window-focus-right"
+"Mod+Up" = "window-focus-up"
+"Mod+Down" = "window-focus-down"
+"Mod+H" = "window-focus-left"
+"Mod+L" = "window-focus-right"
+"Mod+K" = "window-focus-up"
+"Mod+J" = "window-focus-down"
+
+"Mod+Shift+Left" = "column-move-left"
+"Mod+Shift+Right" = "column-move-right"
+"Mod+Shift+Up" = "window-move-up"
+"Mod+Shift+Down" = "window-move-down"
+
+"Mod+Ctrl+Left" = "output-focus-left"
+"Mod+Ctrl+Right" = "output-focus-right"
+"Mod+Shift+Ctrl+Left" = "column-move-to-output-left"
+"Mod+Shift+Ctrl+Right" = "column-move-to-output-right"
+
+"Mod+Page_Down" = "workspace-next"
+"Mod+Page_Up" = "workspace-previous"
+"Mod+Shift+Page_Down" = "column-move-to-workspace-next"
+"Mod+Shift+Page_Up" = "column-move-to-workspace-previous"
+
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+"Mod+Shift+1" = "column-move-to-workspace:1"
+"Mod+Shift+2" = "column-move-to-workspace:2"
+"Mod+Shift+3" = "column-move-to-workspace:3"
+"Mod+Shift+4" = "column-move-to-workspace:4"
+"Mod+Shift+5" = "column-move-to-workspace:5"
+
+"Mod+O" = { action = "overview-toggle", repeat = false }
+
+"Mod+F" = { action = "window-toggle-maximize", repeat = false }
+"Mod+Shift+F" = { action = "window-toggle-fullscreen", repeat = false }
+"Mod+C" = "column-center"
+"Mod+V" = { action = "window-toggle-floating", repeat = false }
+"Mod+R" = "window-cycle-primary-extent"
+"Mod+Minus" = "window-modify-primary-extent:-0.1"
+"Mod+Equal" = "window-modify-primary-extent:0.1"
+"Mod+BracketLeft" = "window-consume-or-expel-left"
+"Mod+BracketRight" = "window-consume-or-expel-right"
+
+"Mod+Shift+E" = "session-quit"
+"Mod+Shift+P" = "dpms-off"
