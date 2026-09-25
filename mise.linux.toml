@@ -1,7 +1,3 @@
-# The aur: manager has to exist before the packages step, hence pre-packages.
-[bootstrap.hooks.pre-packages]
-run = "mkdir -p ~/.local/share/mise/plugins && ln -sfn ~/dotfiles/plugins/aur ~/.local/share/mise/plugins/aur"
-
 [bootstrap.packages]
 "pacman:yay" = "latest"
 "pacman:zsh" = "latest"

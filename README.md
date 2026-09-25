@@ -40,7 +40,6 @@ mise bootstrap
 | `cli/` | Config sources wanted on any machine |
 | `linux/home/`, `macos/home/` | Config sources deployed under `~` |
 | `linux/root/` | Config sources deployed under `/`, mirroring their target paths |
-| `plugins/aur/` | Package plugin that teaches `mise bootstrap` the `aur:` manager |
 
 The three `mise*.toml` files sit at the top level because mise picks the
 platform config by filename.
