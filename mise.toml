@@ -31,3 +31,4 @@ uv = "latest"
 "~/.config/zsh" = { source = "~/dotfiles/cli/zsh", mode = "symlink-each" }
 "~/.config/sheldon/plugins.toml" = "~/dotfiles/cli/sheldon/plugins.toml"
 "~/.config/git" = { source = "~/dotfiles/cli/git", mode = "symlink-each" }
+"~/.claude/statusline.sh" = "~/dotfiles/cli/claude/statusline.sh"
