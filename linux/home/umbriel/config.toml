@@ -8,6 +8,12 @@ show_cheatsheet = false
 [environment]
 LC_TIME = "en_US.utf8"
 
+# logind owns suspend; these only move the desktop off the closed panel
+# while an external monitor is connected.
+[events]
+lid_close = "if grep -l '^connected$' /sys/class/drm/card*-*/status | grep -qv eDP; then wlr-randr --output eDP-1 --off; fi"
+lid_open = "wlr-randr --output eDP-1 --on"
+
 [output.eDP-1]
 mode = "2880x1800@120"
 scale = 1.5

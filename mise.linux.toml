@@ -13,6 +13,7 @@
 "pacman:tmux" = "latest"
 "pacman:niri" = "latest"
 "pacman:xwayland-satellite" = "latest"
+"pacman:wlr-randr" = "latest"
 "pacman:noctalia" = "latest"
 "pacman:noctalia-greeter" = "latest"
 "pacman:vivaldi" = "latest"
