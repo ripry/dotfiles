@@ -8,10 +8,6 @@ show_cheatsheet = false
 [environment]
 LC_TIME = "en_US.utf8"
 
-# https://docs.noctalia.dev/noctalia/compositor-settings/niri/#laptop
-[events]
-lid_close = "noctalia msg session lock-and-suspend"
-
 [output.eDP-1]
 mode = "2880x1800@120"
 scale = 1.5

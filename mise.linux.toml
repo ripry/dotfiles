@@ -45,13 +45,6 @@ owner = "root"
 group = "root"
 mode = "0644"
 
-# https://docs.noctalia.dev/noctalia/compositor-settings/niri/#laptop
-[bootstrap.files."/etc/systemd/logind.conf.d/lid-switch.conf"]
-source = "linux/root/etc/systemd/logind.conf.d/lid-switch.conf"
-owner = "root"
-group = "root"
-mode = "0644"
-
 # uinput must be loaded and group-writable for xremap to run without sudo.
 # ref: https://github.com/xremap/xremap/blob/master/doc/running_without_sudo.md
 [bootstrap.files."/etc/modules-load.d/uinput.conf"]
